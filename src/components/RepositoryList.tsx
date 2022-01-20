@@ -3,8 +3,14 @@ import { RepositoryItem } from "./RepositoryItem";
 
 import '../styles/repositories.scss';
 
+interface Repository {
+    name: string;
+    description: string;
+    html_url: string;
+}
+
 export function RepositoryList() {
-    const [repositories, setRepositories] = useState([]);
+    const [repositories, setRepositories] = useState<Repository[]>([]);
 
     // useEffect: dispara uma função quando algo acontecer
     useEffect(() => {
@@ -18,8 +24,8 @@ export function RepositoryList() {
             <h1>Repository List</h1>
             <ul>
                 {
-                    repositories && repositories.map(repo =>
-                        <RepositoryItem key={repo.id} repository={repo} />
+                    repositories && repositories.map(repository =>
+                        <RepositoryItem key={repository.name} repository={repository} />
                     )
                 }
             </ul>
